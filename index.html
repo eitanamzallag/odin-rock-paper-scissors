@@ -8,6 +8,9 @@
 <body>
     <script>
         let options = ['Rock', 'Paper','Scissors'];
+        playerScore = 0;
+        computerScore = 0;
+
         function GetComputerChoice() {
             let computerChoice = Math.floor(Math.random() * options.length);
             return options[computerChoice];
@@ -21,13 +24,31 @@
             }
             // handles winning
             else if((playerChoice.toLowerCase() === "rock" && computerChoice === "Scissors") || (playerChoice.toLowerCase() === "paper" && computerChoice === "Rock") || (playerChoice.toLowerCase() === "scissors" && computerChoice === "paper")) {
+                playerScore ++;
                 return(playerChoice + " wins against " + computerChoice + ". You've won!");
             }
 
             // handles losing (any case where you don't win/tie)
             else {
+                computerScore++;
                 return(computerChoice + " wins " + playerChoice + ". You've lost!");
             }
+        }
+
+        for(let i = 0; i < 5; i++) {
+            Game();
+        }
+
+        if(computerScore > playerScore) {
+            console.log("You've lost " + playerScore + ":" + computerScore);
+        }
+
+        else if(playerScore > computerScore) {
+            console.log("You've won " + playerScore + ":" + computerScore);
+        }
+
+        else {
+            console.log("You tied " + playerScore + ":" + computerScore);
         }
     </script>
 </body>
